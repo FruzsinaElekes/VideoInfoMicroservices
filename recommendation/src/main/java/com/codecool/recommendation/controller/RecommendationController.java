@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recommendation")
-public class Controller {
+public class RecommendationController {
 
     @Autowired
     private RecommendationService recommendationService;
 
-    @GetMapping("/{videoId}")
+    @GetMapping("/get/{videoId}")
     public List<Recommendation> getRecommendationsForVideo(@PathVariable long videoId) {
         return recommendationService.getAllRecommendationsForVideo(videoId);
     }
