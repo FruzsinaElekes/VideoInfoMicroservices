@@ -23,4 +23,10 @@ public class Controller {
     public Recommendation postRecommendationForVideo(@RequestBody Recommendation toSave) {
         return recommendationService.saveNewRecommendation(toSave);
     }
+
+    @PutMapping("/update")
+    public Recommendation updateRecommendationForVideo(@RequestBody Recommendation toSave) {
+        return recommendationService.updateRecommendation(toSave);
+    }
+
 }
