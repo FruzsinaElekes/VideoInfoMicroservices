@@ -3,3 +3,9 @@
 mvnw*
 target
 *.iml
+# react
+/node_modules
+/.pnp
+.pnp.js
+/coverage
+/build
