@@ -22,10 +22,13 @@ public class VideoService {
 
     public Video getVideoWithRecommendations(long videoId) {
         Video video = videoRepository.findById(videoId).orElseThrow(IllegalArgumentException::new);
-        System.out.println(video.getName());
         Set<RecomResult> results = recommendationCaller.getRecommendationsForVideo(videoId);
         video.setRecommendations(results);
         return video;
+    }
+
+    public RecomResult saveNewRecommendation(RecomResult toSave) {
+        return recommendationCaller.saveNewRecommendation(toSave);
     }
 
 }

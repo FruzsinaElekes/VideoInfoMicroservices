@@ -1,12 +1,10 @@
 package com.codecool.videoservice.controller;
 
 import com.codecool.videoservice.entity.Video;
+import com.codecool.videoservice.model.RecomResult;
 import com.codecool.videoservice.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +20,12 @@ public class VideoController {
 
     @GetMapping("/{id}")
     public Video getVideoWithRecommendations(@PathVariable long id) {
-        System.out.println("requested video");
         return videoService.getVideoWithRecommendations(id);
+    }
+
+    @PostMapping("/{id}/recommendation")
+    public RecomResult saveNewRecommendation(@PathVariable long id, @RequestBody RecomResult toSave) {
+        return videoService.saveNewRecommendation(toSave);
     }
 
 

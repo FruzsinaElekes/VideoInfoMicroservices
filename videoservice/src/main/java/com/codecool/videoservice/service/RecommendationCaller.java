@@ -3,6 +3,7 @@ package com.codecool.videoservice.service;
 import com.codecool.videoservice.model.RecomResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +24,12 @@ public class RecommendationCaller {
         ResponseEntity<RecomResult[]> entity = restTemplate.getForEntity(url, RecomResult[].class);
         RecomResult[] results = entity.getBody();
         return Set.of(results);
+    }
+
+    public RecomResult saveNewRecommendation(RecomResult recomResult) {
+        String url = baseUrl + "/new";
+        HttpEntity<RecomResult> entity = new HttpEntity<>(recomResult);
+        return restTemplate.postForObject(url, entity, RecomResult.class);
     }
 
 }
