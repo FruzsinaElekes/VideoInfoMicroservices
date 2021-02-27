@@ -28,5 +28,10 @@ public class VideoController {
         return videoService.saveNewRecommendation(toSave);
     }
 
+    @PutMapping("/{id}/recommendation")
+    public RecomResult updateRecommendation(@PathVariable long id, @RequestBody RecomResult toUpdate) {
+        return videoService.updateRecommendation(toUpdate);
+    }
+
 
 }

@@ -31,4 +31,7 @@ public class VideoService {
         return recommendationCaller.saveNewRecommendation(toSave);
     }
 
+    public RecomResult updateRecommendation(RecomResult toUpdate) {
+        return recommendationCaller.updateRecommendation(toUpdate);
+    }
 }
