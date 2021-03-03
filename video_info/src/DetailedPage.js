@@ -5,6 +5,7 @@ import Comment from './Comment';
 import EmbeddedVideo from './EmbeddedVideo';
 import Form from "./Form";
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components'
 
 export default function DetailedPage() {
     
@@ -24,10 +25,18 @@ export default function DetailedPage() {
             ? 
             <React.Fragment>
                 <h2>{details.name}</h2>
-                <EmbeddedVideo></EmbeddedVideo>
-                <div>
-                    {details.recommendations.map(r => <Comment key={r.id} recommendation={r}></Comment>)}
-                </div>
+                <EmbeddedVideo url={details.url}></EmbeddedVideo>
+                {details.recommendations.length > 0 ?
+                <CommentsSection>
+                    <h3>Comments Section:</h3>
+                    <CommentList>
+                        {details.recommendations.map(r => <Comment key={r.id} recommendation={r}></Comment>)}
+                    </CommentList>
+                </CommentsSection>
+                : <CommentsSection>
+                    <p>Be the first to post a comment!</p>
+                </CommentsSection>
+                }
                 {!showForm && <Button variant="contained" color="primary" onClick={() => setShowForm(true)}>Add recommendation</Button>}
                 {showForm && <Form setUpdater={setUpdater} videoId={id} setShowForm={setShowForm} ></Form>}
 
@@ -37,3 +46,17 @@ export default function DetailedPage() {
         </div>
     )
 }
+
+const CommentsSection = styled.div`
+    width: 50vw;
+    margin: 3em auto;
+    border: 1px solid blueviolet;
+    border-radius: 10px;
+`
+
+const CommentList = styled.div`
+    display: grid;
+    grid-gap: 1em;
+    margin-bottom: 1em;
+
+`

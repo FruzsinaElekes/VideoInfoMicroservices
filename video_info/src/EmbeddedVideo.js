@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components'
+import ReactPlayer from "react-player";
 
-export default function EmbeddedVideo() {
+export default function EmbeddedVideo(props) {
     return (
         <div>
-            nothing yet
+            <StyledReactPlayer url={props.url}/>
         </div>
     )
 }
+
+const StyledReactPlayer = styled(ReactPlayer)`
+    margin: auto
+`

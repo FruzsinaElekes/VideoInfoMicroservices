@@ -1,9 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export default function Comment(props) {
     return (
-        <div>
+        <StyledComment>
             {props.recommendation.rating}: {props.recommendation.comment}
-        </div>
+        </StyledComment>
     )
 }
+
+const StyledComment = styled.div`
+    
+`
