@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import {FaUserEdit} from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 import axios from 'axios';
@@ -33,6 +34,15 @@ export default function Comment(props) {
         })
     }
 
+    const deleteRecommendation = () => {
+        axios.delete(`http://localhost:8762/videoservice/video/${props.recommendation.videoId}/recommendation/${props.recommendation.id}`)
+        .then(response => {
+            if (response.status === 200){
+                props.setUpdater(prev => !prev)
+            }
+        })
+    }
+
     return (
         <StyledComment>
             {!editable 
@@ -40,6 +50,7 @@ export default function Comment(props) {
                 <Rating>{props.recommendation.rating}</Rating>
                 <Recommendation>{props.recommendation.comment}</Recommendation>
                 <FaUserEdit onClick={toggleEditable}/>
+                <MdDelete onClick={deleteRecommendation}></MdDelete>
             </React.Fragment>
             : <React.Fragment>
                 <TextField inputRef={ratingUpdateRef} label="Rating" defaultValue={props.recommendation.rating} type="number"></TextField>
