@@ -1,6 +1,6 @@
 package com.codecool.videoservice.service;
 
-import com.codecool.videoservice.model.RecomResult;
+import com.codecool.videoservice.model.RecomPosted;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -20,23 +20,23 @@ public class RecommendationCaller {
     @Autowired
     RestTemplate restTemplate;
 
-    public Set<RecomResult> getRecommendationsForVideo(long video) {
+    public Set<RecomPosted> getRecommendationsForVideo(long video) {
         String url = String.format(baseUrl + "/get/%s", video);
-        ResponseEntity<RecomResult[]> entity = restTemplate.getForEntity(url, RecomResult[].class);
-        RecomResult[] results = entity.getBody();
+        ResponseEntity<RecomPosted[]> entity = restTemplate.getForEntity(url, RecomPosted[].class);
+        RecomPosted[] results = entity.getBody();
         return Set.of(results);
     }
 
-    public RecomResult saveNewRecommendation(RecomResult recomResult) {
+    public RecomPosted saveNewRecommendation(RecomPosted recomPosted) {
         String url = baseUrl + "/new";
-        HttpEntity<RecomResult> entity = new HttpEntity<>(recomResult);
-        return restTemplate.postForObject(url, entity, RecomResult.class);
+        HttpEntity<RecomPosted> entity = new HttpEntity<>(recomPosted);
+        return restTemplate.postForObject(url, entity, RecomPosted.class);
     }
 
-    public RecomResult updateRecommendation(RecomResult toUpdate) {
+    public RecomPosted updateRecommendation(RecomPosted toUpdate) {
         String url = baseUrl + "/update";
-        HttpEntity<RecomResult> entity = new HttpEntity<>(toUpdate);
-        HttpEntity<RecomResult> response = restTemplate.exchange(url, HttpMethod.PUT, entity, RecomResult.class);
+        HttpEntity<RecomPosted> entity = new HttpEntity<>(toUpdate);
+        HttpEntity<RecomPosted> response = restTemplate.exchange(url, HttpMethod.PUT, entity, RecomPosted.class);
         return response.getBody();
     }
 
