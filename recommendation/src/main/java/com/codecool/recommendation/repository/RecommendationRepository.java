@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RecommendationRepository extends JpaRepository<Recommendation, Long> {
 
-    List<Recommendation> findAllByVideo(long videoId);
+    List<Recommendation> findAllByVideoId(long videoId);
 
 }

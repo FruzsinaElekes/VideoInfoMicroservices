@@ -16,7 +16,7 @@ public class RecommendationService {
     private RecommendationRepository recommendationRepository;
 
     public List<Recommendation> getAllRecommendationsForVideo(long videoId) {
-        return recommendationRepository.findAllByVideo(videoId);
+        return recommendationRepository.findAllByVideoId(videoId);
     }
 
     public Recommendation saveNewRecommendation(Recommendation recommendation) {
