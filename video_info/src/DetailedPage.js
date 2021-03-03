@@ -26,17 +26,18 @@ export default function DetailedPage() {
             <React.Fragment>
                 <h2>{details.name}</h2>
                 <EmbeddedVideo url={details.url}></EmbeddedVideo>
-                {details.recommendations.length > 0 ?
                 <CommentsSection>
-                    <h3>Comments Section:</h3>
-                    <CommentList>
-                        {details.recommendations.map(r => <Comment key={r.id} recommendation={r}></Comment>)}
-                    </CommentList>
-                </CommentsSection>
-                : <CommentsSection>
-                    <p>Be the first to post a comment!</p>
-                </CommentsSection>
+                {details.recommendations.length > 0 ?
+                    <React.Fragment>
+                        <h3>Comments Section:</h3>
+                        <CommentList>
+                            {details.recommendations.map(r => <Comment setUpdater={setUpdater} key={r.id} recommendation={r}></Comment>)}
+                        </CommentList>
+                    </React.Fragment>
+                   : <p>Be the first to post a comment!</p>
                 }
+                </CommentsSection>
+
                 {!showForm && <Button variant="contained" color="primary" onClick={() => setShowForm(true)}>Add recommendation</Button>}
                 {showForm && <Form setUpdater={setUpdater} videoId={id} setShowForm={setShowForm} ></Form>}
 
