@@ -36,4 +36,8 @@ public class VideoService {
     public RecomPosted updateRecommendation(RecomPosted toUpdate) {
         return recommendationCaller.updateRecommendation(toUpdate);
     }
+
+    public void deleteRecommendation(long recId) {
+        recommendationCaller.deleteRecommendation(recId);
+    }
 }

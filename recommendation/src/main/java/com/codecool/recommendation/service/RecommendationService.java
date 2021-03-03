@@ -29,4 +29,9 @@ public class RecommendationService {
         toUpdate.setRating(toSave.getRating());
         return toUpdate;
     }
+
+    @Transactional
+    public void deleteRecommendation(long id) {
+        recommendationRepository.deleteById(id);
+    }
 }

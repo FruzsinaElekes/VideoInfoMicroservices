@@ -35,5 +35,9 @@ public class VideoController {
         return videoService.updateRecommendation(toUpdate);
     }
 
-
+    @DeleteMapping("/{id}/recommendation/{recId}")
+    public String deleteRecommendation(@PathVariable long id, @PathVariable long recId) {
+        videoService.deleteRecommendation(recId);
+        return "Success";
+    }
 }

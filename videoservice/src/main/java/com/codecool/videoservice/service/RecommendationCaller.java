@@ -40,4 +40,8 @@ public class RecommendationCaller {
         return response.getBody();
     }
 
+    public void deleteRecommendation(long recId) {
+        String url = baseUrl + "/delete/" + recId;
+        restTemplate.delete(url);
+    }
 }

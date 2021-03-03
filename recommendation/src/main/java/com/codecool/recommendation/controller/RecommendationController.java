@@ -28,4 +28,10 @@ public class RecommendationController {
         return recommendationService.updateRecommendation(toSave);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteRecommendation(@PathVariable long id) {
+        recommendationService.deleteRecommendation(id);
+        return "Success";
+    }
+
 }
