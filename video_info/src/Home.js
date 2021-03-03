@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import VideoItem from './VideoItem';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 
 export default function Home() {
 
@@ -13,10 +15,15 @@ export default function Home() {
 
     return (
         <div>
-            <h2>This is the top part of the page</h2>
-            <div>
-                {videoList && videoList.map(i => <VideoItem key={i.id} base = {i}/>)}
-            </div>
+            <h2>Some selected yoga videos</h2>
+            <Container>
+                {videoList && videoList.map(i => <p key={i.id}><Link to={`/video/${i.id}`}>{i.name}</Link></p>)}
+            </Container>
         </div>
     )
 }
+
+const Container = styled.div`
+    width: 300px;
+    margin: auto;
+`

@@ -29,7 +29,7 @@ export default function Form(props) {
                 props.setShowForm(false)
                 props.setUpdater(prev => !prev)
             }
-            console.log(response)})
+            })
     }
 
     return (

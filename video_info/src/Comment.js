@@ -17,7 +17,7 @@ export default function Comment(props) {
             id : props.recommendation.id,
             videoId : props.recommendation.videoId,
             comment: commentUpdateRef.current.value,
-            rating: ratingUpdateRef.current.value
+            rating: parseInt(ratingUpdateRef.current.value)
         }
         axios({
             method: "PUT",
@@ -28,7 +28,7 @@ export default function Comment(props) {
         .then(response => {
             if (response.status === 200){
                 toggleEditable()
-                props.setUpdater(true)
+                props.setUpdater(prev => !prev)
             }
         })
     }

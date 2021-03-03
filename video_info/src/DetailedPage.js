@@ -20,7 +20,7 @@ export default function DetailedPage() {
     }, [updater])
 
     return (
-        <div>
+        <Container>
             {details !== undefined
             ? 
             <React.Fragment>
@@ -44,7 +44,7 @@ export default function DetailedPage() {
             </React.Fragment>
             : <React.Fragment>Still loading data</React.Fragment>
             }
-        </div>
+        </Container>
     )
 }
 
@@ -59,5 +59,8 @@ const CommentList = styled.div`
     display: grid;
     grid-gap: 1em;
     margin-bottom: 1em;
+`
 
+const Container = styled.div`
+    text-align: center;
 `
