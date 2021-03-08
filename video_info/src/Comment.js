@@ -53,8 +53,16 @@ export default function Comment(props) {
                 <MdDelete onClick={deleteRecommendation}></MdDelete>
             </React.Fragment>
             : <React.Fragment>
-                <TextField inputRef={ratingUpdateRef} label="Rating" defaultValue={props.recommendation.rating} type="number"></TextField>
-                <TextField inputRef={commentUpdateRef} label="Comment" defaultValue={props.recommendation.comment} multiline rows={4}></TextField>
+                <EditableRating 
+                    inputRef={ratingUpdateRef}
+                    label="Rating"
+                    defaultValue={props.recommendation.rating} 
+                    type="number">
+                </EditableRating>
+                <TextField 
+                    inputRef={commentUpdateRef} 
+                    label="Comment" 
+                    defaultValue={props.recommendation.comment} multiline></TextField>
                 <Button onClick={updateRecommendation}>Save</Button>
             </React.Fragment>
             }
@@ -64,7 +72,9 @@ export default function Comment(props) {
 
 const StyledComment = styled.div`
     display:flex;
+    justify-content: space-evenly;
     margin: auto;
+    width: 100%
 `
 
 const Rating = styled.div`
@@ -75,5 +85,9 @@ const Rating = styled.div`
 const Recommendation = styled.div`
     width: 15em;
     padding: 0 1em;
-
+    word-wrap: break-word
+`
+const EditableRating = styled(TextField)`
+    width: 3em;
+    margin:0 1em;
 `

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
 import EmbeddedVideo from './EmbeddedVideo';
@@ -21,6 +22,7 @@ export default function DetailedPage() {
 
     return (
         <Container>
+            <Button variant="contained" color="primary"><StyledLink to="/">Home</StyledLink></Button>
             {details !== undefined
             ? 
             <React.Fragment>
@@ -29,12 +31,12 @@ export default function DetailedPage() {
                 <CommentsSection>
                 {details.recommendations.length > 0 ?
                     <React.Fragment>
-                        <h3>Comments Section:</h3>
+                        <h3>Recommendations</h3>
                         <CommentList>
                             {details.recommendations.map(r => <Comment setUpdater={setUpdater} key={r.id} recommendation={r}></Comment>)}
                         </CommentList>
                     </React.Fragment>
-                   : <p>Be the first to post a comment!</p>
+                   : <p>Be the first to post a recommendation!</p>
                 }
                 </CommentsSection>
 
@@ -50,17 +52,24 @@ export default function DetailedPage() {
 
 const CommentsSection = styled.div`
     width: 50vw;
-    margin: 3em auto;
-    border: 1px solid blueviolet;
-    border-radius: 10px;
+    margin: 2em auto;
 `
 
 const CommentList = styled.div`
     display: grid;
     grid-gap: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
+    margin-top: 3em;
 `
 
 const Container = styled.div`
     text-align: center;
+`
+
+const StyledLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    :visited{
+        color:white
+    }
 `

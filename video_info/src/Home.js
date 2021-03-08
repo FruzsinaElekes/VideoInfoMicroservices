@@ -14,16 +14,20 @@ export default function Home() {
     }, [])
 
     return (
-        <div>
-            <h2>Some selected yoga videos</h2>
-            <Container>
+        <Container>
+            <h2>Some selected videos</h2>
+            <VideoList>
                 {videoList && videoList.map(i => <p key={i.id}><Link to={`/video/${i.id}`}>{i.name}</Link></p>)}
-            </Container>
-        </div>
+            </VideoList>
+        </Container>
     )
 }
 
-const Container = styled.div`
+const VideoList = styled.div`
     width: 300px;
     margin: auto;
+`
+
+const Container = styled.div`
+    text-align:center;
 `
